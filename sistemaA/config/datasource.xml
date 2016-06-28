@@ -1,0 +1,19 @@
+<!-- DataSource-->
+<!-- 
+<datasource jndi-name="java:jboss/datasources/sistemaADS" pool-name="sistemaACP" enabled="true">
+    <connection-url>jdbc:postgresql://localhost:5432/sistema_a</connection-url>
+    <driver>postgresql</driver>
+    <security>
+        <user-name>postgres</user-name>
+        <password>1234</password>
+    </security>
+</datasource>
+ -->
+ 
+ 
+<!-- Driver-->
+<!-- 
+<driver name="postgresql" module="com.postgres">
+    <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
+</driver>
+ -->

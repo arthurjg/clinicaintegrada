@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	
+	<h:head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>SISTEMA A - Sistema centralizado de consulta de Exames</title>	
+	</h:head>
+
+	<h:body>
+	
+		<f:view>
+	
+			<h1>VISUALIZADOR DE EXAMES</h1>
+			<hr/>		
+			
+			<h:messages />
+			<div>
+				<p:graphicImage value="#{imagemResourceBean.imagem}" height="500px" width="500px">
+					<f:param name="dominioRest" value="#{visualizadorExameBean.dominioRest}" />
+					<f:param name="contextoRest" value="#{visualizadorExameBean.contextoRest}" />
+					<f:param name="portaRest" value="#{visualizadorExameBean.portaRest}" />
+					<f:param name="recursoRest" value="#{visualizadorExameBean.recursoRest}" />
+					<f:param name="pacienteParametro" value="#{visualizadorExameBean.pacienteParametro}" />
+					<f:param name="exameParametro" value="#{visualizadorExameBean.exameParametro}" />
+					<f:param name="pacienteCodigo" value="#{visualizadorExameBean.pacienteCodigo}" />
+					<f:param name="exameCodigo" value="#{visualizadorExameBean.exameCodigo}" />
+				</p:graphicImage>			
+			</div>
+		
+		</f:view>	
+	
+		<hr/>
+	
+	</h:body>
+</html>

@@ -1,0 +1,136 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<ui:composition template="/templates/principal.xhtml">
+
+	<ui:define name="titulo">
+		SISTEMA A - Sistema centralizado de consulta de Exames
+	</ui:define>
+
+	<ui:define name="corpo">
+
+		<f:view contentType="text/html">
+			
+			<h2>Cadastro de Cliente Visualizador de Exames</h2>
+			
+			<h:form id="voltar">
+				<h:commandLink action="clinicas" value="Voltar" />
+			</h:form>		
+			
+			<hr/>			
+
+			<h:form id="cadastro">
+				<h:messages />					
+				<h:inputHidden value="#{clinicaBean.clinicaCliente.id}" />
+
+				<h:panelGrid columns="4">
+					<h:outputLabel value="Dominio: " for="dominio" />
+					<h:inputText id="dominio" label="Dominio"
+						value="#{clinicaBean.clinicaCliente.dominio}" required="true"
+						size="70" requiredMessage="O dominio deve ser informado" />
+
+					<h:outputLabel value="Porta: " for="porta" />
+					<h:inputText id="porta" label="Porta"
+						value="#{clinicaBean.clinicaCliente.porta}" size="6" maxlength="6">
+						<f:validateLongRange minimum="0" maximum="100000" />
+					</h:inputText>
+
+					<h:outputLabel value="Contexto: " for="contexto" />
+					<h:inputText id="contexto" label="Caminho do Contexto"
+						value="#{clinicaBean.clinicaCliente.caminhoContexto}"
+						required="true" size="70"
+						requiredMessage="O contexto deve ser informado" />
+
+					<h:outputLabel value="Caminho do Visualizador:"
+						for="caminhoVisualizador" />
+					<h:inputText id="caminhoVisualizador"
+						label="Caminho do Visualizador"
+						value="#{clinicaBean.clinicaCliente.caminhoVisualizador}"
+						required="true" size="70"
+						requiredMessage="O Caminho do Visualizador deve ser informado" />
+						
+				</h:panelGrid>
+
+				<h:panelGroup>
+					<fieldset>
+						<legend>Parametros</legend>
+						<h:panelGrid columns="4">
+
+							<h:outputLabel value="Dominio Servico Parametro: "
+								for="dominioServicoParametro" />
+							<h:inputText id="dominioServicoParametro"
+								label="Dominio Servico Parametro"
+								value="#{clinicaBean.clinicaCliente.dominioServicoParametro}"
+								required="true" size="50"
+								requiredMessage="O Dominio Servico Parametro deve ser informado" />
+
+							<h:outputLabel value="Porta Servico Parametro: "
+								for="portaServicoParametro" />
+							<h:inputText id="portaServicoParametro"
+								label="Porta Servico Parametro"
+								value="#{clinicaBean.clinicaCliente.portaServicoParametro}"
+								required="true" size="50"
+								requiredMessage="O Porta Servico Parametro deve ser informado" />
+
+							<h:outputLabel value="Contexto Servico Parametro: "
+								for="contextoServicoParametro" />
+							<h:inputText id="contextoServicoParametro"
+								label="Contexto Servico Parametro"
+								value="#{clinicaBean.clinicaCliente.contextoServicoParametro}"
+								required="true" size="50"
+								requiredMessage="O Contexto Servico Parametro deve ser informado" />
+
+							<h:outputLabel value="Recurso Servico Parametro: "
+								for="recursoServicoParametro" />
+							<h:inputText id="recursoServicoParametro"
+								label="Recurso Servico Parametro"
+								value="#{clinicaBean.clinicaCliente.recursoServicoParametro}"
+								required="true" size="50"
+								requiredMessage="O Recurso Servico Parametro deve ser informado" />
+
+							<h:outputLabel value="Paciente Parametro Nome: "
+								for="pacienteParametroNome" />
+							<h:inputText id="pacienteParametroNome"
+								label="Paciente Parametro Nome"
+								value="#{clinicaBean.clinicaCliente.pacienteParametroNome}"
+								required="true" size="50"
+								requiredMessage="O Paciente Parametro Nome deve ser informado" />
+
+							<h:outputLabel value="Exame Parametro Nome: "
+								for="exameParametroNome" />
+							<h:inputText id="exameParametroNome" label="Exame Parametro Nome"
+								value="#{clinicaBean.clinicaCliente.exameParametroNome}"
+								required="true" size="50"
+								requiredMessage="O Exame Parametro Nome deve ser informado" />
+
+							<h:outputLabel value="Paciente Parametro Valor: "
+								for="pacienteParametroValor" />
+							<h:inputText id="pacienteParametroValor"
+								label="Paciente Parametro Valor"
+								value="#{clinicaBean.clinicaCliente.pacienteParametroValor}"
+								required="true" size="50"
+								requiredMessage="O Paciente Parametro Valor deve ser informado" />
+
+							<h:outputLabel value="Exame Parametro Valor: "
+								for="exameParametroValor" />
+							<h:inputText id="exameParametroValor"
+								label="Exame Parametro Valor"
+								value="#{clinicaBean.clinicaCliente.exameParametroValor}"
+								required="true" size="50"
+								requiredMessage="O Exame Parametro Valor deve ser informado" />
+						</h:panelGrid>
+					</fieldset>
+				</h:panelGroup>
+				<br />
+				<h:commandButton action="#{clinicaBean.salvarCliente}" value="Salvar" />				
+				<h:commandButton type="reset" value="Limpar" />
+			</h:form>
+
+		</f:view>
+
+	</ui:define>
+</ui:composition>
+</html>
