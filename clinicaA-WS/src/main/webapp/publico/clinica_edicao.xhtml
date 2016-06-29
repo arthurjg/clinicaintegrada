@@ -1,0 +1,107 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<ui:composition template="/templates/principal.xhtml">
+
+	<ui:define name="titulo">
+		SISTEMA A - Sistema centralizado de consulta de Exames
+	</ui:define>
+
+	<ui:define name="corpo">
+
+		<f:view contentType="text/html">
+			
+			<h2>Cadastro de Clinicas</h2>
+			
+			<h:form id="voltar">
+				<h:commandLink action="clinicas" value="Voltar" />
+			</h:form>		
+			
+			<hr/>			
+
+			<h:form id="cadastro">
+				<h:messages />
+				<h:inputHidden value="#{clinicaBean.clinica.id}" />	
+				<h:inputHidden value="#{clinicaBean.clinicaServico.id}" />			
+
+				<h:panelGrid columns="2">
+					<h:outputLabel value="Nome:" for="nome" />
+					<h:inputText id="nome" label="Nome"
+						value="#{clinicaBean.clinica.nome}" size="80" required="true"
+						requiredMessage="Favor informar o nome da Clinica"
+						validatorMessage="O nome deve conter no minimo 5 caracteres">
+						<f:validateLength minimum="5" maximum="80" />
+					</h:inputText>
+
+					<h:outputLabel value="Endereço:" for="endereco" />
+					<h:inputText id="endereco" label="Endereço"
+						value="#{clinicaBean.clinica.endereco}" size="80"
+						required="false">						
+					</h:inputText>				
+				</h:panelGrid>
+
+				<h:panelGroup>
+					<fieldset>
+						<legend>Clinica Serviço</legend>
+						<h:panelGrid columns="4">
+							<h:outputLabel value="Dominio: " for="dominio" />
+							<h:inputText id="dominio" label="Dominio"
+								value="#{clinicaBean.clinicaServico.dominio}" required="true"
+								size="70" requiredMessage="O dominio deve ser informado" />
+
+							<h:outputLabel value="Porta: " for="porta" />
+							<h:inputText id="porta" label="Porta"
+								value="#{clinicaBean.clinicaServico.porta}" size="6"
+								maxlength="6">	
+								<f:validateLongRange minimum="0" maximum="100000" />							
+							</h:inputText>
+							
+							<h:outputLabel value="Contexto: " for="contexto" />
+							<h:inputText id="contexto" label="Caminho do Contexto"
+								value="#{clinicaBean.clinicaServico.caminhoContexto}" required="true"
+								size="70" requiredMessage="O contexto deve ser informado" />
+								
+							<h:outputLabel value="Recurso: " for="recurso" />
+							<h:inputText id="recurso" label="Recurso"
+								value="#{clinicaBean.clinicaServico.caminhoRecurso}" required="true"
+								size="70" requiredMessage="O recurso deve ser informado" />
+								
+							<h:outputLabel value="Paciente Parametro: " for="paciente" />
+							<h:inputText id="paciente" label="Paciente Parametro"
+								value="#{clinicaBean.clinicaServico.pacienteParametro}" required="true"
+								size="70" requiredMessage="O Parametro do Paciente deve ser informado" />
+								
+							<h:outputLabel value="Exame Parametro: " for="exame" />
+							<h:inputText id="exame" label="Exame Parametro"
+								value="#{clinicaBean.clinicaServico.exameParametro}" required="true"
+								size="70" requiredMessage="O Parametro do Exame deve ser informado" />
+						</h:panelGrid>
+					</fieldset>
+				</h:panelGroup>	
+				
+				<h:panelGroup>
+					<fieldset>
+						<legend>Clinica Cliente/Visualizador</legend>
+						<h:panelGrid columns="2">	
+							<h:selectOneMenu value="#{clinicaBean.visualizadorCodigo}"								 
+								rendered="#{!empty clinicaBean.visualizadores}">
+								<f:selectItem itemValue="" itemLabel="Selecione"/>
+								<f:selectItems 	value="#{clinicaBean.visualizadores}" var="visualizador"
+									itemValue="#{visualizador.id}" itemLabel="#{visualizador.caminhoBase}"/>
+							</h:selectOneMenu>		
+						</h:panelGrid>
+					</fieldset>
+				</h:panelGroup>									
+				
+				<h:commandButton action="#{clinicaBean.salvar}" value="Salvar" />				
+				<h:commandButton type="reset" value="Limpar" />
+			</h:form>
+
+		</f:view>
+
+	</ui:define>
+</ui:composition>
+</html>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title><ui:insert name="titulo">Clinica A</ui:insert></title>
+	<h:outputStylesheet library="css" name="estilo.css"/>	
+	
+</h:head>
+<h:body>
+	<div id="container">
+		<div id="logotipo">
+			<h:graphicImage library="imagens" name="logo.png"/>
+			<h1>Clinica Médica A - sistema de exames</h1>			
+		</div>
+		<div id="barra_menu">
+	    	<ui:insert name="barra_menu">
+	    		<ui:include src="/publico/menu_sistema.xhtml"/>
+	   		</ui:insert>   
+		</div>
+		<div id="corpo">
+			<ui:insert name="corpo"/>    
+		</div>
+		<div id="rodape">
+	    	<ui:insert name="rodape">
+	    		<ui:include src="/publico/rodape.xhtml"/>
+	    	</ui:insert> 
+		</div>
+	</div>
+</h:body>
+</html>

@@ -21,6 +21,16 @@
 	</listener>
 	
 	<servlet>
+		<servlet-name>jsf</servlet-name>
+		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>jsf</servlet-name>
+		<url-pattern>*.xhtml</url-pattern>
+	</servlet-mapping>	
+	
+	<servlet>
 		<servlet-name>resteasy-servlet</servlet-name>
 		<servlet-class>
 			org.jboss.resteasy.plugins.server.servlet.HttpServletDispatcher
@@ -31,4 +41,9 @@
 		<servlet-name>resteasy-servlet</servlet-name>
 		<url-pattern>/rest/*</url-pattern>
 	</servlet-mapping>	
+	
+	<welcome-file-list>
+		<welcome-file>index.jsf</welcome-file>		
+	</welcome-file-list>
+	
 </web-app>
