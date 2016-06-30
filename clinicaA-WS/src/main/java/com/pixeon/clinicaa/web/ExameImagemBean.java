@@ -1,5 +1,7 @@
 package com.pixeon.clinicaa.web;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 
@@ -8,6 +10,8 @@ import com.pixeon.clinicaa.service.ExameImagemService;
 import com.pixeon.clinicaa.web.util.FileSaver;
 import com.pixeon.clinicaa.web.util.MensagemUtil;
 
+@ManagedBean(name = "clinicaBean")
+@RequestScoped
 public class ExameImagemBean {
 	
 	@Inject

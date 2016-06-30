@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	
+<ui:composition template="/templates/principal.xhtml">
+
+	<ui:define name="titulo">
+		SISTEMA A - Sistema centralizado de consulta de Exames
+	</ui:define>
+
+	<ui:define name="corpo">
+
+		<f:view contentType="text/html">
+			
+			<h2>Cadastro de Clinicas</h2>
+			
+			<h:form id="nova">
+				<table>
+					<tr>
+						<td>
+							<h:commandButton action="clinica_edicao" value="Cadastrar nova" />											
+						</td>						
+					</tr>						
+				</table>				
+			</h:form>
+			
+			<br />
+			<hr />
+			<br />	
+			<h:messages />		
+
+			<h:form id="listagem">
+				<h:dataTable border="1" cellpadding="2" cellspacing="0"
+				 	value="#{clinicaBean.clinicas}" var="clinica"
+					rendered="#{!empty clinicaBean.clinicas}">
+					<h:column>
+						<f:facet name="header">clinica</f:facet>
+						#{clinica.nome}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Endereço</f:facet>
+						#{clinica.endereco}
+					</h:column>
+					<h:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:commandLink action="#{clinicaBean.editar}">
+							<h:graphicImage library="imagens" name="editar16.png" style="border:0" />
+							<f:setPropertyActionListener target="#{clinicaBean.clinica}" value="#{clinica}" />	
+							<f:setPropertyActionListener target="#{clinicaBean.clinicaServico}" 
+								value="#{clinica.clinicaServico}" />	
+							<f:setPropertyActionListener target="#{clinicaBean.visualizadorCodigo}" value="#{clinica.clinicaCliente.id}" />											
+						</h:commandLink>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Excluir</f:facet>
+						<h:commandLink action="#{clinicaBean.excluir}"
+							onclick="if (!confirm('Confirma a exclusão da clinica #{clinica.nome}?')) return false;">
+							<h:graphicImage library="imagens" name="excluir16.png" style="border:0" />
+							<f:setPropertyActionListener target="#{clinicaBean.clinica}" value="#{clinica}" />
+						</h:commandLink>
+					</h:column>
+				</h:dataTable>
+			</h:form>
+			
+		</f:view>
+
+	</ui:define>
+</ui:composition>
+</html>
