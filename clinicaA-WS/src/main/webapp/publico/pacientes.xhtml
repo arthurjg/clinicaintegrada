@@ -7,20 +7,20 @@
 <ui:composition template="/templates/principal.xhtml">
 
 	<ui:define name="titulo">
-		Clinica Médica A - Cadastro de Clinicas
+		Clinica Médica A - Cadastro de Pacientes
 	</ui:define>
 
 	<ui:define name="corpo">
 
 		<f:view contentType="text/html">
 			
-			<h2>Cadastro de Clinicas</h2>
+			<h2>Cadastro de Pacientes</h2>
 			
 			<h:form id="nova">
 				<table>
 					<tr>
 						<td>
-							<h:commandButton action="clinica_edicao" value="Cadastrar nova" />											
+							<h:commandButton action="paciente_edicao" value="Cadastrar novo" />											
 						</td>						
 					</tr>						
 				</table>				
@@ -33,29 +33,29 @@
 
 			<h:form id="listagem">
 				<h:dataTable border="1" cellpadding="2" cellspacing="0"
-				 	value="#{clinicaBean.clinicas}" var="clinica"
-					rendered="#{!empty clinicaBean.clinicas}">
+				 	value="#{pacienteBean.pacientes}" var="paciente"
+					rendered="#{!empty pacienteBean.pacientes}">
 					<h:column>
-						<f:facet name="header">clinica</f:facet>
-						#{clinica.nome}
+						<f:facet name="header">paciente</f:facet>
+						#{paciente.nome}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Endereço</f:facet>
-						#{clinica.endereco}
+						#{paciente.endereco}
 					</h:column>
 					<h:column>
 						<f:facet name="header">Editar</f:facet>
-						<h:commandLink action="clinica_edicao">
+						<h:commandLink action="paciente_edicao">
 							<h:graphicImage library="imagens" name="editar16.png" style="border:0" />
-							<f:setPropertyActionListener target="#{clinicaBean.clinica}" value="#{clinica}" />												
+							<f:setPropertyActionListener target="#{pacienteBean.paciente}" value="#{paciente}" />												
 						</h:commandLink>
 					</h:column>
 					<h:column>
 						<f:facet name="header">Excluir</f:facet>
-						<h:commandLink action="#{clinicaBean.excluir}"
-							onclick="if (!confirm('Confirma a exclusão da clinica #{clinica.nome}?')) return false;">
+						<h:commandLink action="#{pacienteBean.excluir}"
+							onclick="if (!confirm('Confirma a exclusão do(a) paciente #{paciente.nome}?')) return false;">
 							<h:graphicImage library="imagens" name="excluir16.png" style="border:0" />
-							<f:setPropertyActionListener target="#{clinicaBean.clinica}" value="#{clinica}" />
+							<f:setPropertyActionListener target="#{pacienteBean.paciente}" value="#{paciente}" />
 						</h:commandLink>
 					</h:column>
 				</h:dataTable>

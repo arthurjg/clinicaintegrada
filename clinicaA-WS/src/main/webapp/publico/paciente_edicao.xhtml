@@ -7,42 +7,42 @@
 <ui:composition template="/templates/principal.xhtml">
 
 	<ui:define name="titulo">
-		Clinica Médica A - Cadastro de Clinicas
+		Paciente Médica A - Cadastro de Pacientes
 	</ui:define>
 
 	<ui:define name="corpo">
 
 		<f:view contentType="text/html">
 			
-			<h2>Cadastro de Clinicas</h2>
+			<h2>Cadastro de Pacientes</h2>
 			
 			<h:form id="voltar">
-				<h:commandLink action="clinicas" value="Voltar" />
+				<h:commandLink action="pacientes" value="Voltar" />
 			</h:form>		
 			
 			<hr/>			
 
 			<h:form id="cadastro">
 				<h:messages />
-				<h:inputHidden value="#{clinicaBean.clinica.id}" />							
+				<h:inputHidden value="#{pacienteBean.paciente.id}" />							
 
 				<h:panelGrid columns="2">
 					<h:outputLabel value="Nome:" for="nome" />
 					<h:inputText id="nome" label="Nome"
-						value="#{clinicaBean.clinica.nome}" size="80" required="true"
-						requiredMessage="Favor informar o nome da Clinica"
+						value="#{pacienteBean.paciente.nome}" size="80" required="true"
+						requiredMessage="Favor informar o nome da Paciente"
 						validatorMessage="O nome deve conter no minimo 5 caracteres">
 						<f:validateLength minimum="5" maximum="80" />
 					</h:inputText>
 
 					<h:outputLabel value="Endereço:" for="endereco" />
 					<h:inputText id="endereco" label="Endereço"
-						value="#{clinicaBean.clinica.endereco}" size="80"
+						value="#{pacienteBean.paciente.endereco}" size="80"
 						required="false">						
 					</h:inputText>				
 				</h:panelGrid>												
 				
-				<h:commandButton action="#{clinicaBean.salvar}" value="Salvar" />				
+				<h:commandButton action="#{pacienteBean.salvar}" value="Salvar" />				
 				<h:commandButton type="reset" value="Limpar" />
 			</h:form>
 
