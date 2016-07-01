@@ -34,6 +34,14 @@
   
   <dependencies>
   
+  	<!-- javaee7 api -->
+	<dependency>
+		<groupId>javax</groupId>
+		<artifactId>javaee-api</artifactId>
+		<version>7.0</version>
+		<scope>provided</scope>
+	</dependency>
+  
     <dependency>
       <groupId>org.jboss.spec.javax.faces</groupId>
       <artifactId>jboss-jsf-api_2.1_spec</artifactId>

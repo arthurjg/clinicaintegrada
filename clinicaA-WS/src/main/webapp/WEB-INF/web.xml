@@ -27,7 +27,7 @@
 	
 	<servlet-mapping>
 		<servlet-name>jsf</servlet-name>
-		<url-pattern>*.xhtml</url-pattern>
+		<url-pattern>*.jsf</url-pattern>
 	</servlet-mapping>	
 	
 	<servlet>

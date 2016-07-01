@@ -38,11 +38,25 @@ public class ClinicaBean {
 			clinicaService.atualizar(this.clinica);
 		}		
 		mensagemUtil.adicionaMensagem("Clinica salva com sucesso.");
+		limparView();
+		return "clinicas?faces-redirect=true";
+	}
+	
+	public String excluir(){
+		clinicaService.remover(this.clinica);
+		mensagemUtil.adicionaMensagem("Clinica " + this.clinica.getNome() + " removida com sucesso.");
+		limparView();
 		return "clinicas?faces-redirect=true";
 	}
 	
 	public void listar(){
 		this.clinicas = clinicaService.listar();
+	}
+	
+	private void limparView(){
+		this.clinica = new Clinica();
+		this.clinicas = null;
+		
 	}
 	
 	public Clinica getClinica() {

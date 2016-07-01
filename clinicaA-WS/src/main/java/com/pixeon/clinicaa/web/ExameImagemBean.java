@@ -10,7 +10,7 @@ import com.pixeon.clinicaa.service.ExameImagemService;
 import com.pixeon.clinicaa.web.util.FileSaver;
 import com.pixeon.clinicaa.web.util.MensagemUtil;
 
-@ManagedBean(name = "clinicaBean")
+@ManagedBean(name = "exameImagemBean")
 @RequestScoped
 public class ExameImagemBean {
 	
