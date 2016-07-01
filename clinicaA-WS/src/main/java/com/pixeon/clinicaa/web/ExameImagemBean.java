@@ -1,12 +1,18 @@
 package com.pixeon.clinicaa.web;
 
+import java.util.List;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
 
+import com.pixeon.clinicaa.model.Clinica;
 import com.pixeon.clinicaa.model.Exame;
+import com.pixeon.clinicaa.model.Paciente;
+import com.pixeon.clinicaa.service.ClinicaService;
 import com.pixeon.clinicaa.service.ExameImagemService;
+import com.pixeon.clinicaa.service.PacienteService;
 import com.pixeon.clinicaa.web.util.FileSaver;
 import com.pixeon.clinicaa.web.util.MensagemUtil;
 
@@ -18,6 +24,12 @@ public class ExameImagemBean {
 	private ExameImagemService exameImagemService;
 	
 	@Inject
+	private ClinicaService clinicaService;
+	
+	@Inject
+	private PacienteService pacienteService;
+	
+	@Inject
 	private FileSaver fileSaver;
 	
 	@Inject
@@ -25,18 +37,22 @@ public class ExameImagemBean {
 	
 	private Exame exame = new Exame();
 	private Part imagem;	
+	private List<Clinica> clinicas;
+	private List<Paciente> pacientes;
 	
 	public ExameImagemBean(){
 		
 	}
 	
 	public String salvar(){
-		String imagemCaminho = fileSaver.writeOnExternal("sumarios", imagem);
-		exame.setImagemCaminho(imagemCaminho);
+		if(imagem != null){
+			String imagemCaminho = fileSaver.writeOnExternal("exames", imagem);
+			exame.setImagemCaminho(imagemCaminho);
+		}		
 		exameImagemService.salvar(exame);
 		mensagemUtil.adicionaMensagem("exame salvo com sucesso.");
 		limparDados();
-		return "";
+		return "exames?faces-redirect=true";
 	}
 	
 	private void limparDados(){
@@ -57,6 +73,28 @@ public class ExameImagemBean {
 
 	public void setImagem(Part imagem) {
 		this.imagem = imagem;
+	}
+
+	public List<Clinica> getClinicas() {
+		if(clinicas == null){
+			clinicas = clinicaService.listar();
+		}
+		return clinicas;
+	}
+
+	public void setClinicas(List<Clinica> clinicas) {
+		this.clinicas = clinicas;
+	}
+
+	public List<Paciente> getPacientes() {
+		if(pacientes == null){
+			pacientes = pacienteService.listar();
+		}
+		return pacientes;
+	}
+
+	public void setPacientes(List<Paciente> pacientes) {
+		this.pacientes = pacientes;
 	}
 
 }
