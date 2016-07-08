@@ -46,7 +46,11 @@ public class ExameImagemBean {
 	
 	public String salvar(){
 		if(imagem != null){
-			String imagemCaminho = fileSaver.writeOnExternal("exames", imagem);
+			String imagemPrefixo = "exames_";
+			imagemPrefixo = exame.getClinica() == null ? "" : exame.getClinica().getNome();
+			imagemPrefixo += "_";
+			imagemPrefixo += exame.getPaciente() == null ? "" : exame.getPaciente().getNome();
+			String imagemCaminho = fileSaver.writeOnExternal(imagemPrefixo, imagem);
 			exame.setImagemCaminho(imagemCaminho);
 		}		
 		exameImagemService.salvar(exame);

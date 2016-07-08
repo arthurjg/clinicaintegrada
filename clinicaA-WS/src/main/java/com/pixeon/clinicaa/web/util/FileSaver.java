@@ -7,11 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.Part;
 
 import com.amazonaws.AmazonClientException;
-import com.amazonaws.ClientConfiguration;
-import com.amazonaws.auth.AWSCredentials;
-import com.amazonaws.auth.BasicAWSCredentials;
 import com.amazonaws.services.s3.AmazonS3Client;
-import com.amazonaws.services.s3.S3ClientOptions;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 
 public class FileSaver {
@@ -21,6 +17,9 @@ public class FileSaver {
 	
 	@Inject
 	private AmazonS3Client s3Client;
+	
+	@Inject
+	private MensagemUtil mensagemUtil;
 	
 	private static final String CONTENT_DISPOSITION = "content-disposition";
 
@@ -43,11 +42,13 @@ public class FileSaver {
 		
 		String fileName = extractFilename(multipartFile.getHeader(CONTENT_DISPOSITION));		
 		try {
-			s3Client.putObject("casadocodigo", fileName, 
+			s3Client.putObject("clinica-a/" + baseFolder, fileName,
 					multipartFile.getInputStream(), new ObjectMetadata());
-			return "https://s3.amazonaws.com/casadocodigo/" + fileName + "?noAuth=true";
-		} catch (AmazonClientException | IOException e){
-			throw new RuntimeException(e);
+			return "http://localhost:9444/s3/clinica-a/" + baseFolder + "_" + fileName + "?noAuth=true";
+		} catch (AmazonClientException | IOException e) {
+			mensagemUtil.adicionaMensagem(
+					"Houve algum erro ao salvar as imagens, por favor tente mais tarde.");
+			return null;
 		}		
 	}
 

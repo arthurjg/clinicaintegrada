@@ -1,5 +1,7 @@
 package com.pixeon.clinicaa.model;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,6 +22,8 @@ public class Exame {
 	private String analise;
 	private String conclusao;
 	private String imagemCaminho;
+	private Date dataRealizacao;
+	private Date dataResultado;
 	
 	@ManyToOne
 	@NotNull
@@ -93,6 +97,22 @@ public class Exame {
 		this.imagemCaminho = imagemCaminho;
 	}
 
+	public Date getDataRealizacao() {
+		return dataRealizacao;
+	}
+
+	public void setDataRealizacao(Date dataRealizacao) {
+		this.dataRealizacao = dataRealizacao;
+	}
+
+	public Date getDataResultado() {
+		return dataResultado;
+	}
+
+	public void setDataResultado(Date dataResultado) {
+		this.dataResultado = dataResultado;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -101,6 +121,10 @@ public class Exame {
 		result = prime * result + ((clinica == null) ? 0 : clinica.hashCode());
 		result = prime * result
 				+ ((conclusao == null) ? 0 : conclusao.hashCode());
+		result = prime * result
+				+ ((dataRealizacao == null) ? 0 : dataRealizacao.hashCode());
+		result = prime * result
+				+ ((dataResultado == null) ? 0 : dataResultado.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((imagemCaminho == null) ? 0 : imagemCaminho.hashCode());
@@ -136,6 +160,16 @@ public class Exame {
 				return false;
 		} else if (!conclusao.equals(other.conclusao))
 			return false;
+		if (dataRealizacao == null) {
+			if (other.dataRealizacao != null)
+				return false;
+		} else if (!dataRealizacao.equals(other.dataRealizacao))
+			return false;
+		if (dataResultado == null) {
+			if (other.dataResultado != null)
+				return false;
+		} else if (!dataResultado.equals(other.dataResultado))
+			return false;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -162,6 +196,8 @@ public class Exame {
 		} else if (!solicitante.equals(other.solicitante))
 			return false;
 		return true;
-	}	
+	}
+	
+	
 
 }
