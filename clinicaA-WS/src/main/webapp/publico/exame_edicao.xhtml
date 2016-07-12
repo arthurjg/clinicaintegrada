@@ -3,7 +3,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.prime.com.tr/ui">
+	xmlns:p="http://primefaces.org/ui">
 	
 <ui:composition template="/templates/principal.xhtml">
 
@@ -23,12 +23,12 @@
 			
 			<hr/>			
 
-			<h:form id="cadastro">
+			<h:form id="cadastro" enctype="multipart/form-data">
 				<h:messages />					
 				<h:inputHidden value="#{exameImagemBean.exame.id}" />
 
 				<h:panelGrid columns="2">
-					<h:outputLabel value="Nome: " for="nome" />
+					<h:outputLabel value="Exame: " for="nome" />
 					<h:inputText id="nome" label="Nome"
 						value="#{exameImagemBean.exame.nome}" required="true"
 						size="70" requiredMessage="O nome deve ser informado" />
@@ -47,19 +47,19 @@
 						value="#{exameImagemBean.exame.conclusao}" />
 						
 					<h:outputLabel value="Paciente:" for="paciente" />
-					<h:selectOneMenu value="#{exameImagemBean.exame.paciente}"								 
-						rendered="#{!empty exameImagemBean.pacientes}" converter="entityConverter">
+					<h:selectOneMenu value="#{exameImagemBean.pacienteId}"								 
+						rendered="#{!empty exameImagemBean.pacientes}">
 						<f:selectItem itemValue="" itemLabel="Selecione"/>
 						<f:selectItems 	value="#{exameImagemBean.pacientes}" var="paciente"
-							itemValue="#{paciente}" itemLabel="#{paciente.nome}"/>
+							itemValue="#{paciente.id}" itemLabel="#{paciente.nome}"/>
 					</h:selectOneMenu>	
 					
 					<h:outputLabel value="Clinica:"	for="clinica" />
-					<h:selectOneMenu value="#{exameImagemBean.exame.clinica}"								 
-						rendered="#{!empty exameImagemBean.clinicas}" converter="entityConverter">
+					<h:selectOneMenu value="#{exameImagemBean.clinicaId}"								 
+						rendered="#{!empty exameImagemBean.clinicas}">
 						<f:selectItem itemValue="" itemLabel="Selecione"/>
 						<f:selectItems 	value="#{exameImagemBean.clinicas}" var="clinica"
-							itemValue="#{clinica}" itemLabel="#{clinica.nome}"/>
+							itemValue="#{clinica.id}" itemLabel="#{clinica.nome}"/>
 					</h:selectOneMenu>	
 					
 					<h:outputLabel value="Data Realização:"	for="dataRealizacao" />

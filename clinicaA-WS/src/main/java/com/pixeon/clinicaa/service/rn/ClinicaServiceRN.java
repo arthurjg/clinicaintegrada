@@ -38,4 +38,9 @@ public class ClinicaServiceRN implements ClinicaService {
 		return clinicaRepository.listar();
 	}
 
+	@Override
+	public Clinica carregar(Integer id) {		
+		return clinicaRepository.carregar(id);
+	}
+
 }

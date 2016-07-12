@@ -37,14 +37,19 @@ public class ExameImagemBean {
 	
 	private Exame exame = new Exame();
 	private Part imagem;	
+	private List<Exame> exames;
 	private List<Clinica> clinicas;
 	private List<Paciente> pacientes;
+	private Integer clinicaId;
+	private Integer pacienteId;
 	
 	public ExameImagemBean(){
 		
 	}
 	
 	public String salvar(){
+		exame.setClinica(clinicaService.carregar(clinicaId));
+		exame.setPaciente(pacienteService.carregar(pacienteId));
 		if(imagem != null){
 			String imagemPrefixo = "exames_";
 			imagemPrefixo = exame.getClinica() == null ? "" : exame.getClinica().getNome();
@@ -59,8 +64,31 @@ public class ExameImagemBean {
 		return "exames?faces-redirect=true";
 	}
 	
+	private List<Exame> listar(){
+		Clinica clinica = null;
+		Paciente paciente = null;
+		if(clinicaId != null){
+			clinica = clinicaService.carregar(clinicaId); 
+		}
+		if(pacienteId != null){
+			paciente = pacienteService.carregar(pacienteId); 
+		}		 
+		return exameImagemService.listarPorClinicaEPaciente(clinica, paciente);
+	}
+	
 	private void limparDados(){
 		this.exame = new Exame();
+	}
+	
+	public List<Exame> getExames() {
+		if(exames == null){
+			exames = listar();
+		}
+		return exames;
+	}
+
+	public void setExames(List<Exame> exames) {		
+		this.exames = exames;
 	}
 
 	public Exame getExame() {
@@ -100,5 +128,21 @@ public class ExameImagemBean {
 	public void setPacientes(List<Paciente> pacientes) {
 		this.pacientes = pacientes;
 	}
+
+	public Integer getClinicaId() {
+		return clinicaId;
+	}
+
+	public void setClinicaId(Integer clinicaId) {
+		this.clinicaId = clinicaId;
+	}
+
+	public Integer getPacienteId() {
+		return pacienteId;
+	}
+
+	public void setPacienteId(Integer pacienteId) {
+		this.pacienteId = pacienteId;
+	}	
 
 }

@@ -45,6 +45,11 @@ public class PacienteRepositoryJPA implements PacienteRepository {
 		if(paciente != null){
 			manager.remove(paciente);
 		}		
+	}
+
+	@Override
+	public Paciente carregar(Integer id) {		
+		return manager.find(Paciente.class, id);
 	}	
 
 }

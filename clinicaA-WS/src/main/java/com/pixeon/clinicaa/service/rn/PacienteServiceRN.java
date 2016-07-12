@@ -38,4 +38,9 @@ public class PacienteServiceRN implements PacienteService {
 		return pacienteRepository.listar();
 	}
 
+	@Override
+	public Paciente carregar(Integer id) {		
+		return pacienteRepository.carregar(id);
+	}
+
 }

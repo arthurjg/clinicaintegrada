@@ -9,6 +9,7 @@ public interface ClinicaService {
 	public void salvar(Clinica clinica);
 	public void atualizar(Clinica clinica);
 	public void remover(Clinica clinica);	
+	public Clinica carregar(Integer id);
 	public List<Clinica> listar();	
 
 }

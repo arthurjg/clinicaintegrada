@@ -18,39 +18,37 @@
 					<h:commandButton value="Adicionar" action="/publico/exame_edicao" />
 			</h:form>
 			
-			<!-- <h2>Consultar Exames por Paciente</h2>
+			<h2>Consultar Exames por Paciente</h2>
 			<h:messages />		
 
 			<h:form id="listagem">
 				<h:dataTable border="1" cellpadding="2" cellspacing="0"
-					value="#{exameBean.examesDoPaciente}" var="exame"
-					rendered="#{!empty exameBean.examesDoPaciente}">
+					value="#{exameImagemBean.exames}" var="exame"
+					rendered="#{!empty exameImagemBean.exames}">
 					<h:column>
 						<f:facet name="header">Exame</f:facet>
-				#{exame.nome}
-			</h:column>
+						#{exame.nome}
+					</h:column>
 					<h:column>
 						<f:facet name="header">Nome do Paciente</f:facet>
-				#{exame.paciente.nome}
-			</h:column>
+						#{exame.paciente.nome}
+					</h:column>
 					<h:column>
 						<f:facet name="header">Nome do Solicitante</f:facet>				
-					#{exame.solicitante}					
-			</h:column>
+							#{exame.solicitante}					
+					</h:column>
 					<h:column>
 						<f:facet name="header">Clinica</f:facet>				
-					#{exame.clinica.nome}					
-			</h:column>
+						#{exame.clinica.nome}					
+					</h:column>
 					<h:column>
 						<f:facet name="header">Imagens</f:facet>
-						<h:commandLink value="Ver Imagens"
-							action="#{exameBean.visualizaImagem}" target="_blank">
-							<f:setPropertyActionListener
-								target="#{exameBean.exameSelecionado}" value="#{exame}" />
-						</h:commandLink>
+						<h:outputLink value="#{request.contextPath}/#{exame.imagemCaminho}">
+							#{exame.imagemCaminho}
+						</h:outputLink>
 					</h:column>
 				</h:dataTable>
-			</h:form> -->
+			</h:form>
 		</f:view>
 
 	</ui:define>

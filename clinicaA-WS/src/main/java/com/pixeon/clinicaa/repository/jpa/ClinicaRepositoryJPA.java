@@ -45,6 +45,11 @@ public class ClinicaRepositoryJPA implements ClinicaRepository {
 		if(clinica != null){
 			manager.remove(clinica);
 		}		
+	}
+
+	@Override
+	public Clinica carregar(Integer id) {		
+		return manager.find(Clinica.class, id);
 	}	
 
 }
