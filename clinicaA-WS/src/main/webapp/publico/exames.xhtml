@@ -18,7 +18,7 @@
 					<h:commandButton value="Adicionar" action="/publico/exame_edicao" />
 			</h:form>
 			
-			<h2>Consultar Exames por Paciente</h2>
+			<h2>Consultar Exames</h2>
 			<h:messages />		
 
 			<h:form id="listagem">
@@ -43,9 +43,24 @@
 					</h:column>
 					<h:column>
 						<f:facet name="header">Imagens</f:facet>
-						<h:outputLink value="#{request.contextPath}/#{exame.imagemCaminho}">
+						<h:outputLink value="#{exame.imagemCaminho}">
 							#{exame.imagemCaminho}
 						</h:outputLink>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Editar</f:facet>
+						<h:commandLink action="exame_edicao">
+							<h:graphicImage library="imagens" name="editar16.png" style="border:0" />
+							<f:setPropertyActionListener target="#{exameImagemBean.exame}" value="#{exame}" />												
+						</h:commandLink>
+					</h:column>
+					<h:column>
+						<f:facet name="header">Excluir</f:facet>
+						<h:commandLink action="#{exameImagemBean.excluir}"
+							onclick="if (!confirm('Confirma a exclusão do exame #{exame.nome}?')) return false;">
+							<h:graphicImage library="imagens" name="excluir16.png" style="border:0" />
+							<f:setPropertyActionListener target="#{exameImagemBean.exame}" value="#{exame}" />
+						</h:commandLink>
 					</h:column>
 				</h:dataTable>
 			</h:form>

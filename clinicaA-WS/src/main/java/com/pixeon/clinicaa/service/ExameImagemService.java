@@ -11,6 +11,8 @@ public interface ExameImagemService {
 	
 	public InputStream buscaExameImagem(Integer codigoPaciente, Integer codigoExame) throws Exception;
 	public void salvar(Exame exame);
+	public void atualizar(Exame exame);
+	public void remover(Exame exame);
 	public List<Exame> listarPorClinicaEPaciente(Clinica clinica, Paciente paciente);
 
 }

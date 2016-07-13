@@ -35,6 +35,18 @@ public class ExameImagemServiceRN implements ExameImagemService {
 	@Override
 	public List<Exame> listarPorClinicaEPaciente(Clinica clinica, Paciente paciente) {		
 		return exameRepository.listarPorClinicaEPaciente(clinica, paciente);
+	}
+
+	@Override
+	@Transactional
+	public void atualizar(Exame exame) {
+		exameRepository.atualizar(exame);		
+	}
+
+	@Override
+	@Transactional
+	public void remover(Exame exame) {
+		exameRepository.remover(exame);		
 	}	
 
 }

@@ -58,8 +58,19 @@ public class ExameImagemBean {
 			String imagemCaminho = fileSaver.writeOnExternal(imagemPrefixo, imagem);
 			exame.setImagemCaminho(imagemCaminho);
 		}		
-		exameImagemService.salvar(exame);
+		if(this.exame.getId() == null || this.exame.getId() == 0){			
+			exameImagemService.salvar(this.exame);			
+		} else {
+			exameImagemService.atualizar(this.exame);
+		}			
 		mensagemUtil.adicionaMensagem("exame salvo com sucesso.");
+		limparDados();
+		return "exames?faces-redirect=true";
+	}
+	
+	public String excluir(){
+		exameImagemService.remover(this.exame);
+		mensagemUtil.adicionaMensagem("Exame " + this.exame.getNome() + " removido com sucesso.");
 		limparDados();
 		return "exames?faces-redirect=true";
 	}
@@ -78,6 +89,7 @@ public class ExameImagemBean {
 	
 	private void limparDados(){
 		this.exame = new Exame();
+		exames = null;
 	}
 	
 	public List<Exame> getExames() {

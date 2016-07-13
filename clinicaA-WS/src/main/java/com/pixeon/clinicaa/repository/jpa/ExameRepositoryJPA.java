@@ -53,4 +53,17 @@ public class ExameRepositoryJPA implements ExameRepository {
 		return exames;
 	}
 
+	@Override
+	public void atualizar(Exame exame) {
+		manager.merge(exame);		
+	}
+
+	@Override
+	public void remover(Exame exame) {
+		exame = manager.find(Exame.class, exame.getId());
+		if(exame != null){
+			manager.remove(exame);
+		}		
+	}
+
 }
