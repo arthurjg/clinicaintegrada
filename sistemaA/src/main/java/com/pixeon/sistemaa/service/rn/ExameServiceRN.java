@@ -34,4 +34,11 @@ public class ExameServiceRN implements ExameService {
 		return exameRepository.buscarExamesPorPacienteId(pacienteId);
 	}
 
+	@Override
+	public void salvar(Exame exame) {
+		exameRepository.salvar(exame);	
+	}
+	
+	
+
 }

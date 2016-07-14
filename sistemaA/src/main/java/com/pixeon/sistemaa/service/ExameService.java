@@ -9,5 +9,6 @@ public interface ExameService {
 	
 	public List<Exame> buscarExamesPorPaciente(Paciente paciente);
 	public List<Exame> buscarExamesPorPacienteId(Integer pacienteId);
+	public void salvar(Exame exame);
 
 }

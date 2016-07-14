@@ -52,4 +52,9 @@ public class ExameRepositoryJPA implements ExameRepository {
 		return exames;
 	}
 
+	@Override
+	public void salvar(Exame exame) {		
+		manager.persist(exame);
+	}
+
 }
