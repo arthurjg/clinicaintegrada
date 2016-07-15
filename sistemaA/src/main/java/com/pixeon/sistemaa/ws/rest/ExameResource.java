@@ -1,7 +1,5 @@
 package com.pixeon.sistemaa.ws.rest;
 
-import java.io.InputStream;
-
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.core.Response;
