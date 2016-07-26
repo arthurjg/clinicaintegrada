@@ -47,6 +47,10 @@
 						#{clinica.endereco}
 					</h:column>
 					<h:column>
+						<f:facet name="header">	Código</f:facet>
+						#{clinica.codigo}
+					</h:column>
+					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:commandLink action="#{clinicaBean.editar}">
 							<h:graphicImage library="imagens" name="editar16.png" style="border:0" />

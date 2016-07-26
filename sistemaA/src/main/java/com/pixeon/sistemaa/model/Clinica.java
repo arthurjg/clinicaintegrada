@@ -1,11 +1,15 @@
 package com.pixeon.sistemaa.model;
 
+import java.util.UUID;
+
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.OnDelete;
@@ -18,6 +22,10 @@ public class Clinica {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;	
+	
+	@Column(unique = true)
+	private String codigo;
+	
 	private String nome;
 	private String endereco;	
 	
@@ -26,8 +34,12 @@ public class Clinica {
 	private ClinicaServicoX clinicaServico;
 	
 	@ManyToOne
-	private ClinicaCliente clinicaCliente;
+	private ClinicaCliente clinicaCliente;	
 	
+	@PrePersist
+	public void prePersist(){
+		this.codigo = UUID.randomUUID().toString();
+	}
 	
 	public Integer getId() {
 		return id;
@@ -61,6 +73,14 @@ public class Clinica {
 		this.clinicaCliente = clinicaCliente;
 	}
 	
+	public String getCodigo() {
+		return codigo;
+	}
+
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -69,13 +89,14 @@ public class Clinica {
 				+ ((clinicaCliente == null) ? 0 : clinicaCliente.hashCode());
 		result = prime * result
 				+ ((clinicaServico == null) ? 0 : clinicaServico.hashCode());
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result
 				+ ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -94,6 +115,11 @@ public class Clinica {
 			if (other.clinicaServico != null)
 				return false;
 		} else if (!clinicaServico.equals(other.clinicaServico))
+			return false;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
 			return false;
 		if (endereco == null) {
 			if (other.endereco != null)

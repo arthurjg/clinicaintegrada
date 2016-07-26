@@ -75,6 +75,16 @@ public class ExameImagemBean {
 		return "exames?faces-redirect=true";
 	}
 	
+	public void exportar(){
+		if(this.exame.isExportado()){
+			mensagemUtil.adicionaMensagem("Esse Exame já foi exportado.");
+			return;
+		}
+		exameImagemService.exportar(this.exame);
+		mensagemUtil.adicionaMensagem("Exame " + this.exame.getNome() + " exportado com sucesso.");
+		limparDados();		
+	}
+	
 	private List<Exame> listar(){
 		Clinica clinica = null;
 		Paciente paciente = null;

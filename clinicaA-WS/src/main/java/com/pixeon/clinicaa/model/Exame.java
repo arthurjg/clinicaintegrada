@@ -2,6 +2,8 @@ package com.pixeon.clinicaa.model;
 
 import java.util.Date;
 
+
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,13 +19,16 @@ public class Exame {
 	@Id 
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;	
+	private String codigoExterno;
 	private String nome;		
 	private String solicitante;
 	private String analise;
 	private String conclusao;
 	private String imagemCaminho;
 	private Date dataRealizacao;
-	private Date dataResultado;
+	private Date dataResultado;	
+	private boolean exportado;
+	
 	
 	@ManyToOne
 	@NotNull
@@ -113,6 +118,26 @@ public class Exame {
 		this.dataResultado = dataResultado;
 	}
 
+	public boolean isExportado() {
+		return exportado;
+	}
+	
+	public boolean getExportado() {
+		return exportado;
+	}
+
+	public void setExportado(boolean exportado) {
+		this.exportado = exportado;
+	}
+
+	public String getCodigoExterno() {
+		return codigoExterno;
+	}
+
+	public void setCodigoExterno(String codigoExterno) {
+		this.codigoExterno = codigoExterno;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -120,11 +145,14 @@ public class Exame {
 		result = prime * result + ((analise == null) ? 0 : analise.hashCode());
 		result = prime * result + ((clinica == null) ? 0 : clinica.hashCode());
 		result = prime * result
+				+ ((codigoExterno == null) ? 0 : codigoExterno.hashCode());
+		result = prime * result
 				+ ((conclusao == null) ? 0 : conclusao.hashCode());
 		result = prime * result
 				+ ((dataRealizacao == null) ? 0 : dataRealizacao.hashCode());
 		result = prime * result
 				+ ((dataResultado == null) ? 0 : dataResultado.hashCode());
+		result = prime * result + (exportado ? 1231 : 1237);
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		result = prime * result
 				+ ((imagemCaminho == null) ? 0 : imagemCaminho.hashCode());
@@ -155,6 +183,11 @@ public class Exame {
 				return false;
 		} else if (!clinica.equals(other.clinica))
 			return false;
+		if (codigoExterno == null) {
+			if (other.codigoExterno != null)
+				return false;
+		} else if (!codigoExterno.equals(other.codigoExterno))
+			return false;
 		if (conclusao == null) {
 			if (other.conclusao != null)
 				return false;
@@ -169,6 +202,8 @@ public class Exame {
 			if (other.dataResultado != null)
 				return false;
 		} else if (!dataResultado.equals(other.dataResultado))
+			return false;
+		if (exportado != other.exportado)
 			return false;
 		if (id == null) {
 			if (other.id != null)
@@ -196,8 +231,6 @@ public class Exame {
 		} else if (!solicitante.equals(other.solicitante))
 			return false;
 		return true;
-	}
-	
-	
+	}	
 
 }

@@ -12,6 +12,7 @@ import com.pixeon.clinicaa.model.Paciente;
 import com.pixeon.clinicaa.repository.ExameImagemRepository;
 import com.pixeon.clinicaa.repository.ExameRepository;
 import com.pixeon.clinicaa.service.ExameImagemService;
+import com.pixeon.clinicaa.ws.client.ExameClient;
 
 public class ExameImagemServiceRN implements ExameImagemService {
 	
@@ -20,6 +21,9 @@ public class ExameImagemServiceRN implements ExameImagemService {
 	
 	@Inject
 	private ExameRepository exameRepository;
+	
+	@Inject
+	private ExameClient exameClient;
 
 	@Override
 	public InputStream buscaExameImagem(Integer codigoPaciente, Integer codigoExame) throws Exception {		
@@ -47,6 +51,14 @@ public class ExameImagemServiceRN implements ExameImagemService {
 	@Transactional
 	public void remover(Exame exame) {
 		exameRepository.remover(exame);		
+	}
+
+	@Override
+	@Transactional
+	public void exportar(Exame exame) {
+		exameClient.exportarExame(exame);
+		exame.setExportado(true);
+		exameRepository.atualizar(exame);
 	}	
 
 }

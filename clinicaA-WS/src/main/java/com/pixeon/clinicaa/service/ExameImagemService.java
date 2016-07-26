@@ -14,5 +14,6 @@ public interface ExameImagemService {
 	public void atualizar(Exame exame);
 	public void remover(Exame exame);
 	public List<Exame> listarPorClinicaEPaciente(Clinica clinica, Paciente paciente);
+	public void exportar(Exame exame);
 
 }

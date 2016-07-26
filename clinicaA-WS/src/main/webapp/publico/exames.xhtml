@@ -48,6 +48,13 @@
 						</h:outputLink>
 					</h:column>
 					<h:column>
+					<h:commandLink action="#{exameImagemBean.exportar}">
+						<f:ajax execute="@this" render=":listagem" />
+						<h:graphicImage library="imagens" name="check-#{exame.exportado}.png" />
+						<f:setPropertyActionListener target="#{exameImagemBean.exame}" value="#{exame}" />										
+					</h:commandLink>
+				</h:column>
+					<h:column>
 						<f:facet name="header">Editar</f:facet>
 						<h:commandLink action="exame_edicao">
 							<h:graphicImage library="imagens" name="editar16.png" style="border:0" />

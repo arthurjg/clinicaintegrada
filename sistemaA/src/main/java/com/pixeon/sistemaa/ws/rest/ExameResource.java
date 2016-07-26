@@ -16,7 +16,8 @@ public class ExameResource {
 	public Response adicionar(Exame exame){
 		
 		try {
-			exameService.salvar(exame);	
+			//exameService.salvar(exame);	
+			System.out.println("**********************Exame exportado!!!");
 			return Response.status(200).build();
 		} catch(Exception exception){
 			return Response.status(500). entity(exception.getMessage()).build();

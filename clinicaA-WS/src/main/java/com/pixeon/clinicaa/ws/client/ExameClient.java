@@ -1,7 +1,5 @@
 package com.pixeon.clinicaa.ws.client;
 
-import java.io.InputStream;
-
 import javax.inject.Inject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -15,7 +13,7 @@ import com.pixeon.clinicaa.model.Exame;
 
 public class ExameClient {
 	
-private Client client;
+	private Client client;
 	
 	@Inject
 	public ExameClient(){
