@@ -1,9 +1,12 @@
 package com.pixeon.sistemaa.model;
 
+import java.util.UUID;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
 @Entity
@@ -14,7 +17,14 @@ public class Paciente {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;	
 	private String nome;
-	private String endereco;
+	private String endereco;	
+	
+	private String codigo;
+	
+	@PrePersist
+	public void prePersist(){
+		this.codigo = UUID.randomUUID().toString();
+	}
 	
 	public Integer getId() {
 		return id;
@@ -34,10 +44,18 @@ public class Paciente {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
+	public String getCodigo() {
+		return codigo;
+	}
+	public void setCodigo(String codigo) {
+		this.codigo = codigo;
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		result = prime * result
 				+ ((endereco == null) ? 0 : endereco.hashCode());
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -53,6 +71,11 @@ public class Paciente {
 		if (getClass() != obj.getClass())
 			return false;
 		Paciente other = (Paciente) obj;
+		if (codigo == null) {
+			if (other.codigo != null)
+				return false;
+		} else if (!codigo.equals(other.codigo))
+			return false;
 		if (endereco == null) {
 			if (other.endereco != null)
 				return false;
@@ -69,6 +92,7 @@ public class Paciente {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
-	}	
+	}
+	
 
 }

@@ -6,10 +6,12 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import com.pixeon.sistemaa.repository.jpa.ExameRepositoryJPATest;
 import com.pixeon.sistemaa.service.rn.ExameServiceRNTest;
+import com.pixeon.sistemaa.web.ClinicaBeanTest;
 import com.pixeon.sistemaa.web.ExameBeanTest;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ExameBeanTest.class, ExameServiceRNTest.class, ExameRepositoryJPATest.class })
+@SuiteClasses({ ExameBeanTest.class, ExameServiceRNTest.class, ExameRepositoryJPATest.class,
+	ClinicaBeanTest.class})
 public class TestSuite {
 
 }

@@ -39,7 +39,12 @@
 					<h:inputText id="endereco" label="Endereço"
 						value="#{clinicaBean.clinica.endereco}" size="80"
 						required="false">						
-					</h:inputText>				
+					</h:inputText>		
+					
+					<h:outputLabel value="Código:" for="codigo" />
+					<h:inputText id="codigo" label="Código"	value="#{clinicaBean.clinica.codigoExterno}" 
+						size="80" required="false">						
+					</h:inputText>			
 				</h:panelGrid>												
 				
 				<h:commandButton action="#{clinicaBean.salvar}" value="Salvar" />				

@@ -11,5 +11,6 @@ public interface PacienteService {
 	public void remover(Paciente paciente);	
 	public Paciente carregar(Integer id);
 	public List<Paciente> listar();	
+	public void exportar(Paciente paciente);
 
 }

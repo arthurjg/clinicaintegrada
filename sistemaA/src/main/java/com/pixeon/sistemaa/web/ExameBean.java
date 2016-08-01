@@ -26,6 +26,9 @@ public class ExameBean {
 	@Inject
 	private ExameService exameService;	
 	
+	@Inject
+	private MensagemUtil mensagemUtil;	
+	
 	private Exame exameSelecionado = new Exame();
 	private Integer codigoPaciente;
 	private List<Exame> examesDoPaciente;	
@@ -59,7 +62,7 @@ public class ExameBean {
 		try {			
 			context.redirect(caminhoVisualizadorImagem);
 		} catch (IOException e){			
-			MensagemUtil.adicionaMensagem("Houve um erro desconhecido ao redirecionar para a imagem.");
+			mensagemUtil.adicionaMensagem("Houve um erro desconhecido ao redirecionar para a imagem.");
 		}	
 	}	
 	

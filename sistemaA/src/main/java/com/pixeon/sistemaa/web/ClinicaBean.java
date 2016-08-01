@@ -20,6 +20,9 @@ public class ClinicaBean {
 	@Inject
 	private ClinicaService clinicaService;	
 	
+	@Inject
+	private MensagemUtil mensagemUtil;	
+	
 	private Clinica clinica;
 	private ClinicaServicoX clinicaServico;
 	private ClinicaCliente clinicaCliente;
@@ -30,8 +33,9 @@ public class ClinicaBean {
 	public ClinicaBean(){		
 	}
 	
-	public ClinicaBean(ClinicaService clinicaService){
+	public ClinicaBean(ClinicaService clinicaService, MensagemUtil mensagemUtil){
 		this.clinicaService = clinicaService;
+		this.mensagemUtil = mensagemUtil;
 	}	
 	
 	@PostConstruct
@@ -41,29 +45,27 @@ public class ClinicaBean {
 		clinicaCliente = new ClinicaCliente();
 	}
 	
-	public String editar(){		
-		return "clinica_edicao";
-	}
-	
 	public String salvar(){			
 		this.clinica.setClinicaServico(this.clinicaServico);
 		
-		ClinicaCliente visualizador = clinicaService.carregarVisualizador(visualizadorCodigo);
-		this.clinica.setClinicaCliente(visualizador);				
+		if(visualizadorCodigo != null){
+			ClinicaCliente visualizador = clinicaService.carregarVisualizador(visualizadorCodigo);
+			this.clinica.setClinicaCliente(visualizador);
+		}						
 		
 		if(this.clinica.getId() == null || this.clinica.getId() == 0){			
 			clinicaService.salvar(this.clinica);			
 		} else {
 			clinicaService.atualizar(this.clinica);
 		}		
-		MensagemUtil.adicionaMensagem("Clinica salva com sucesso.");
+		mensagemUtil.adicionaMensagem("Clinica salva com sucesso.");
 		return "clinicas?faces-redirect=true";
 	}
 	
 	public String salvarCliente(){			
 		this.clinica.setClinicaCliente(this.clinicaCliente);
 		clinicaService.salvarCliente(clinica);		
-		MensagemUtil.adicionaMensagem("Cliente/Visualizador da Clinica salvo com sucesso.");
+		mensagemUtil.adicionaMensagem("Cliente/Visualizador da Clinica salvo com sucesso.");
 		return "clinicas?faces-redirect=true";
 	}
 	
@@ -71,7 +73,7 @@ public class ClinicaBean {
 		clinicaService.remover(this.clinica);
 		this.clinica = new Clinica();
 		this.clinicas = null;
-		MensagemUtil.adicionaMensagem("Clinica removida com sucesso.");		
+		mensagemUtil.adicionaMensagem("Clinica removida com sucesso.");		
 		return null;
 	}
 	

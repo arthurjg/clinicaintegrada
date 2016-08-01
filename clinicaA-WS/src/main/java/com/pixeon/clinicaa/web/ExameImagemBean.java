@@ -10,6 +10,7 @@ import javax.servlet.http.Part;
 import com.pixeon.clinicaa.model.Clinica;
 import com.pixeon.clinicaa.model.Exame;
 import com.pixeon.clinicaa.model.Paciente;
+import com.pixeon.clinicaa.model.PacienteX;
 import com.pixeon.clinicaa.service.ClinicaService;
 import com.pixeon.clinicaa.service.ExameImagemService;
 import com.pixeon.clinicaa.service.PacienteService;
@@ -95,6 +96,10 @@ public class ExameImagemBean {
 			paciente = pacienteService.carregar(pacienteId); 
 		}		 
 		return exameImagemService.listarPorClinicaEPaciente(clinica, paciente);
+	}
+	
+	private void exportarPaciente(Paciente paciente){
+		pacienteService.exportar(paciente);
 	}
 	
 	private void limparDados(){

@@ -12,11 +12,8 @@ import com.pixeon.sistemaa.web.util.URLConfigUtil;
 
 @Entity
 @Table(name = "clinica_cliente")
-public class ClinicaCliente implements Serializable {
+public class ClinicaCliente implements Serializable {	
 	
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id 
