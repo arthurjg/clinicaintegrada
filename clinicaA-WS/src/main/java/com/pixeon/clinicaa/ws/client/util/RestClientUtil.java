@@ -6,8 +6,6 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Response;
 
-import com.pixeon.clinicaa.model.Exame;
-
 public class RestClientUtil {
 	
 	public static String montaCaminhoContexto(String dominio, String porta, String contexto){
@@ -26,5 +24,15 @@ public class RestClientUtil {
 		
 		return invocationBuilder.post(exameEntity);		
 	}	
+	
+	public static String extraiIdString(String procurada, String trechoIgnorado){
+		String id = null;
+		if(procurada.contains(trechoIgnorado)){
+			int startIndex = procurada.contains("/") ? procurada.indexOf("/") + 1 : trechoIgnorado.length();	
+			int endIndex = procurada.length();
+			id = procurada.substring(startIndex, endIndex);			
+		}
+		return id;
+	}
 
 }

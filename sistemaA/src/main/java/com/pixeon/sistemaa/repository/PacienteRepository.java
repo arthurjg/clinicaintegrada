@@ -5,5 +5,6 @@ import com.pixeon.sistemaa.model.Paciente;
 public interface PacienteRepository {
 	
 	public String salvar(Paciente paciente);
+	public Paciente buscar(Integer id);
 
 }

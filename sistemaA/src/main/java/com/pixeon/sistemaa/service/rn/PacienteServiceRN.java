@@ -18,4 +18,9 @@ public class PacienteServiceRN implements PacienteService {
 		return pacienteRepository.salvar(paciente);
 	}
 
+	@Override
+	public Paciente buscar(Integer id) {		
+		return pacienteRepository.buscar(id);
+	}
+
 }

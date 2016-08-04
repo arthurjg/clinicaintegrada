@@ -22,10 +22,20 @@ private Client client;
 		String dominio = "localhost";
 		String porta = "8080";
 		String contexto = "sistemaA";
-		String recurso = "rest/pacientes";
+		String prefixo = "rest/";
+		String recurso = "pacientes";
+		String prerecurso = prefixo + recurso;
 		String recusosContexto = RestClientUtil.montaCaminhoContexto(dominio, porta, contexto);
 		Response resposta = RestClientUtil.executaRequisicaoPost(client, recusosContexto, 
-				recurso, paciente, MediaType.APPLICATION_JSON);				
+				prerecurso, paciente, MediaType.APPLICATION_JSON);	
+		if(resposta.getStatus() == 201){
+			String location = resposta.getLocation().toString();
+			
+			System.out.println("**** location: " + resposta.getLocation().getPath());
+			System.out.println("**** location h: " + resposta.getHeaders().get("Location") );
+			String id = RestClientUtil.extraiIdString(location, recurso);
+			System.out.println("**** id: " + id);			
+		}
 	}	
 
 }

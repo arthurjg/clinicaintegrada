@@ -10,7 +10,6 @@ import javax.servlet.http.Part;
 import com.pixeon.clinicaa.model.Clinica;
 import com.pixeon.clinicaa.model.Exame;
 import com.pixeon.clinicaa.model.Paciente;
-import com.pixeon.clinicaa.model.PacienteX;
 import com.pixeon.clinicaa.service.ClinicaService;
 import com.pixeon.clinicaa.service.ExameImagemService;
 import com.pixeon.clinicaa.service.PacienteService;
@@ -81,7 +80,10 @@ public class ExameImagemBean {
 			mensagemUtil.adicionaMensagem("Esse Exame já foi exportado.");
 			return;
 		}
-		exameImagemService.exportar(this.exame);
+		if(this.exame.getPaciente().getCodigoExterno() == null){
+			exportarPaciente(this.exame.getPaciente());
+		}
+		//exameImagemService.exportar(this.exame);
 		mensagemUtil.adicionaMensagem("Exame " + this.exame.getNome() + " exportado com sucesso.");
 		limparDados();		
 	}
