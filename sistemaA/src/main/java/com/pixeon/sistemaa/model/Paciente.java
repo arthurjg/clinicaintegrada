@@ -8,9 +8,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @Table(name = "paciente")
+@XmlRootElement
 public class Paciente {
 	
 	@Id 
@@ -19,12 +21,12 @@ public class Paciente {
 	private String nome;
 	private String endereco;	
 	
-	private String codigo;
+	//private String codigo;
 	
-	@PrePersist
+	/*@PrePersist
 	public void prePersist(){
 		this.codigo = UUID.randomUUID().toString();
-	}
+	}*/
 	
 	public Integer getId() {
 		return id;
@@ -44,14 +46,15 @@ public class Paciente {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public String getCodigo() {
+	
+	/*public String getCodigo() {
 		return codigo;
 	}
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
+	}*/
 	
-	@Override
+	/*@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -92,7 +95,7 @@ public class Paciente {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
-	}
+	}*/
 	
 
 }

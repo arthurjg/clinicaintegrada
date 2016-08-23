@@ -51,7 +51,11 @@ public class PacienteServiceRN implements PacienteService {
 	@Override
 	public void exportar(Paciente paciente) {
 		PacienteX pacienteX = new PacienteX(paciente);
-		pacienteClient.exportarPaciente(pacienteX);		
+		Integer codigo = pacienteClient.exportarPaciente(pacienteX);	
+		if(codigo != null){
+			paciente.setCodigoExterno(codigo.toString());
+			pacienteRepository.atualizar(paciente);
+		}
 	}
 
 }

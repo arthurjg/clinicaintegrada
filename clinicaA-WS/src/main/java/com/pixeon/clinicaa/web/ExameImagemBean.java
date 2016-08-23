@@ -6,6 +6,10 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.inject.Inject;
 import javax.servlet.http.Part;
+import javax.ws.rs.NotFoundException;
+import javax.ws.rs.ServerErrorException;
+
+import org.apache.log4j.Logger;
 
 import com.pixeon.clinicaa.model.Clinica;
 import com.pixeon.clinicaa.model.Exame;
@@ -34,6 +38,8 @@ public class ExameImagemBean {
 	
 	@Inject
 	private MensagemUtil mensagemUtil;
+	
+	private Logger logger = Logger.getLogger(ExameImagemBean.class);
 	
 	private Exame exame = new Exame();
 	private Part imagem;	
@@ -76,16 +82,38 @@ public class ExameImagemBean {
 	}
 	
 	public void exportar(){
+		logger.info("exportando exame...");
 		if(this.exame.isExportado()){
 			mensagemUtil.adicionaMensagem("Esse Exame já foi exportado.");
+			logger.info("exame não exportado - Esse Exame já foi exportado.");
 			return;
 		}
 		if(this.exame.getPaciente().getCodigoExterno() == null){
-			exportarPaciente(this.exame.getPaciente());
+			try {
+				logger.info("exportando paciente...");
+				exportarPaciente(this.exame.getPaciente());
+				logger.info("... paciente exportado.");
+			} catch(NotFoundException exception) {
+				mensagemUtil.adicionaMensagem("O sistema externo não está disponivel, tente mais tarde ou contate o administrador.");
+				logger.error("exame não exportado... O sistema externo não está disponivel.");
+				return;
+			} catch(ServerErrorException exception) {
+				exception.printStackTrace();
+				mensagemUtil.adicionaMensagem("O sistema externo não conseguiu processar a solicitação, tente mais tarde ou contate o administrador.");
+				logger.error("exame não exportado... O sistema externo não conseguiu processar a solicitação.");
+				return;
+			}			
 		}
-		//exameImagemService.exportar(this.exame);
+		if(this.exame.getClinica().getCodigoExterno() == null){
+			mensagemUtil.adicionaMensagem("A clinica do Exame não está associada no sistema externo. Favor rever cadastro da clinica.");
+			logger.error("exame não exportado... A clinica do Exame não está associada no sistema externo..");
+			return;
+		}
+		exameImagemService.exportar(this.exame);
 		mensagemUtil.adicionaMensagem("Exame " + this.exame.getNome() + " exportado com sucesso.");
-		limparDados();		
+		logger.info("... exame exportado.");
+		limparDados();	
+		
 	}
 	
 	private List<Exame> listar(){

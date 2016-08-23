@@ -22,13 +22,29 @@ public class RestClientUtil {
 		Invocation.Builder invocationBuilder =	resourceWebTarget.request(mediaType);	
 		Entity<Object> exameEntity = Entity.entity(exame, mediaType);
 		
-		return invocationBuilder.post(exameEntity);		
+		Response response = invocationBuilder.post(exameEntity);
+		client.close();
+		return response;		
 	}	
 	
-	public static String extraiIdString(String procurada, String trechoIgnorado){
+	public static Response executaRequisicaoGet(Client client, String recusosContexto, 
+			String recusosCaminho, String mediaType){		
+		
+		WebTarget webTarget = client.target(recusosContexto);		
+		WebTarget resourceWebTarget = webTarget.path(recusosCaminho);	
+		
+		Invocation.Builder invocationBuilder =	resourceWebTarget.request(mediaType);		
+		Response response = invocationBuilder.get();	
+		client.close();
+		return response;
+	}	
+	
+	public static String extraiSubString(String procurada, String trechoIgnorado){
 		String id = null;
 		if(procurada.contains(trechoIgnorado)){
-			int startIndex = procurada.contains("/") ? procurada.indexOf("/") + 1 : trechoIgnorado.length();	
+			int startIndex = 
+					//procurada.contains("/") ? procurada.indexOf("/") + 1 : 
+				trechoIgnorado.length();	
 			int endIndex = procurada.length();
 			id = procurada.substring(startIndex, endIndex);			
 		}

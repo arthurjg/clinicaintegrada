@@ -6,7 +6,7 @@ public class PacienteX {
 	private String nome;
 	private String endereco;	
 	
-	private String codigo;
+	//private String codigo;
 	
 	public PacienteX(){
 		
@@ -41,12 +41,12 @@ public class PacienteX {
 		this.endereco = endereco;
 	}
 
-	public String getCodigo() {
+	/*public String getCodigo() {
 		return codigo;
 	}
 
 	public void setCodigo(String codigo) {
 		this.codigo = codigo;
-	}
+	}*/
 
 }

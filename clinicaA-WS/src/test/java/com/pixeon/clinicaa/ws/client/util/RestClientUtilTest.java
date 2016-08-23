@@ -29,10 +29,10 @@ public class RestClientUtilTest {
 	
 	@Test
 	public void testExtraiIdString() {
-		String procurada = "/pacientes/123";
-		String ignorada = "pacientes";
-		String idEsperada = "123";
-		String id = RestClientUtil.extraiIdString(procurada, ignorada);
+		String procurada = "sistemaA/pacientes/123";
+		String ignorada = "sistemaA";
+		String idEsperada = "/pacientes/123";
+		String id = RestClientUtil.extraiSubString(procurada, ignorada);
 		
 		assertEquals(idEsperada, id);
 	}

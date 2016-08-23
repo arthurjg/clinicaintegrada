@@ -11,11 +11,19 @@ public class PacienteRepositoryJPA implements PacienteRepository {
 	
 	@PersistenceContext
 	private EntityManager manager;
+	
+	public PacienteRepositoryJPA(){
+		
+	}
+	
+	public PacienteRepositoryJPA(EntityManager manager){
+		this.manager = manager;
+	}
 
 	@Override
 	public String salvar(Paciente paciente) {
 		manager.persist(paciente);
-		return paciente.getCodigo();
+		return paciente.getId().toString();
 	}
 
 	@Override
